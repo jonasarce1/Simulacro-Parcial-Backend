@@ -34,7 +34,12 @@ app.get("api/mascotas/:id", async(req:Request, res:Response) => {
     const mascota = await getMascotaId(req.params.id);
     res.json(mascota);
   }catch(error){
-    res.json({error:error.message});
+    if(error.message === "No se ha encontrado la mascota"){     
+      res.status(404).json({error:error.message});
+      return;
+    }else{
+      res.json({error:error.message});
+    }
   } 
 })
 
