@@ -4,6 +4,7 @@ import mongoose from "npm:mongoose@7.6.3";
 import getMascota from "./resolvers/getMascota.ts";
 import getMascotaId from "./resolvers/getMascotaId.ts";
 import addMascota from "./resolvers/addMascota.ts";
+import deleteMascota from "./resolvers/deleteMascota.ts";
 
 import { load } from "https://deno.land/std@0.204.0/dotenv/mod.ts";
 const env = await load();
@@ -52,6 +53,22 @@ app.post("/api/mascotas", async(req:Request, res:Response) => {
   }catch(error){
     if(error.message == "Tipo incorrecto"){
       res.status(400).json({error:error.message});
+      return;
+    }else{
+      res.json({error:error.message});
+    }
+  }
+})
+
+
+app.delete("/api/mascotas/:id", async(req:Request, res:Response) => {
+  try{
+    const id = req.params.id;
+    await deleteMascota(id);
+    res.json({message:"Mascota eliminada"});
+  }catch(error){
+    if(error.message == "No se ha encontrado la mascota"){
+      res.status(404).json({error:error.message});
       return;
     }else{
       res.json({error:error.message});
