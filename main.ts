@@ -60,7 +60,6 @@ app.post("/api/mascotas", async(req:Request, res:Response) => {
   }
 })
 
-
 app.delete("/api/mascotas/:id", async(req:Request, res:Response) => {
   try{
     const id = req.params.id;
