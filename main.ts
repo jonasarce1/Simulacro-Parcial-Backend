@@ -30,7 +30,7 @@ app.get("/api/mascotas", async(_req:Request, res:Response) => { //Get de todas l
   }
 })
 
-app.get("api/mascotas/:id", async(req:Request, res:Response) => {
+app.get("/api/mascotas/:id", async(req:Request, res:Response) => {
   try{
     const mascota = await getMascotaId(req.params.id);
     res.json(mascota);
@@ -44,7 +44,7 @@ app.get("api/mascotas/:id", async(req:Request, res:Response) => {
   } 
 })
 
-app.post("api/mascotas", async(req:Request, res:Response) => {
+app.post("/api/mascotas", async(req:Request, res:Response) => {
   try{
     const {nombre, descripcion, tipo} = req.body;
     const nuevaMascota = await addMascota(nombre, descripcion, tipo);

@@ -1,5 +1,5 @@
 import mongoose from "npm:mongoose@7.6.3"; 
-//import {Mascota} from "../types.ts";
+import {Mascota} from "../types.ts";
 
 const Schema = mongoose.Schema;
 
@@ -9,8 +9,8 @@ const mascotaSchema = new Schema({
     tipo:{type:String, required: true}
 })
 
-//type MascotaModelType = mongoose.Document & Omit<Mascota, "id">
+type MascotaModelType = mongoose.Document & Omit<Mascota, "id">
 
-//export default mongoose.model<MascotaModelType>("Mascota", mascotaSchema) //otra manera
+export default mongoose.model<MascotaModelType>("Mascota", mascotaSchema) //otra manera
 
-export default mongoose.model("Mascota", mascotaSchema); //Exportacion el modelo
+//export default mongoose.model("Mascota", mascotaSchema); //Exportacion el modelo
